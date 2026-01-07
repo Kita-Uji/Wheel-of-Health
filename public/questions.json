@@ -1,0 +1,410 @@
+[
+  {
+    "id": "1",
+    "text": "How steady and reliable is your energy from morning to night?",
+    "category": "Energy & Focus",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "2",
+    "text": "How well do you bounce back from stress or overwhelm?",
+    "category": "Stress Management",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "3",
+    "text": "I understand how food and drink affect me",
+    "category": "Nutrition",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "4",
+    "text": "How well do you maintain routines when life gets busy?",
+    "category": "Consistency & Habits",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "5",
+    "text": "How often do you stretch, mobilise, or work on posture?",
+    "category": "Movement (mobility and stability)",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "6",
+    "text": "How in control do you feel of your emotional state day-to-day?",
+    "category": "Stress Management",
+    "lowLabel": "At the whims of chaos",
+    "highLabel": "Locked in",
+    "flipValue": false
+  },
+  {
+    "id": "7",
+    "text": "If I were told to jump, stand on one leg, and squat right now, I can do it easily.",
+    "category": "Movement (mobility and stability)",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "8",
+    "text": "I have no issues getting through my daily physical activities.",
+    "category": "Movement (mobility and stability)",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "9",
+    "text": "How much do you feel like you're operating as your “higher self E",
+    "category": "Purpose & Mindset",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "10",
+    "text": "I stop eating at least 3 hours before bedtime.",
+    "category": "Recovery and Sleep",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "11",
+    "text": "I am mentally clear and focused throughout the day.",
+    "category": "Energy & Focus",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "12",
+    "text": "I have a high tolerance to stressful situations.",
+    "category": "Stress Management",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "13",
+    "text": "How effectively do you manage stress without turning to food/alcohol?",
+    "category": "Stress Management",
+    "lowLabel": "Ineffective",
+    "highLabel": "Effective",
+    "flipValue": false
+  },
+  {
+    "id": "14",
+    "text": "Walking all day does not affect how I feel the next day.",
+    "category": "Cardio & Conditioning",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "15",
+    "text": "How reliable are you at following through on promises you make to yourself?",
+    "category": "Consistency & Habits",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "16",
+    "text": "How effectively do you manage soreness, mobility, and downtime?",
+    "category": "Recovery and Sleep",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "17",
+    "text": "Walking up 2 flights of stairs is easy.",
+    "category": "Cardio & Conditioning",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "18",
+    "text": "I can confidently look at myself in the bathroom mirror naked.",
+    "category": "Strength and Physique",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "19",
+    "text": "I rarely indulge in comfort foods.",
+    "category": "Nutrition",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "20",
+    "text": "How physically energetic do you feel during everyday tasks?",
+    "category": "Energy & Focus",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "21",
+    "text": "How often do you wake up refreshed without relying on caffeine?",
+    "category": "Recovery and Sleep",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "22",
+    "text": "I can change my lifestyle habits to achieve my goals.",
+    "category": "Purpose & Mindset",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "23",
+    "text": "How understanding are the people around you during your journey?",
+    "category": "Support Systems",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "24",
+    "text": "How often do weekends undo your weekday progress?",
+    "category": "Consistency & Habits",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "25",
+    "text": "I move without pain or discomfort right after waking up.",
+    "category": "Movement (mobility and stability)",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "26",
+    "text": "How clear are you on why you want to transform your health?",
+    "category": "Purpose & Mindset",
+    "lowLabel": "Unclear",
+    "highLabel": "Laser focused",
+    "flipValue": false
+  },
+  {
+    "id": "27",
+    "text": "I can control my hunger signals.",
+    "category": "Nutrition",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "28",
+    "text": "I can hit 8000 steps every single day.",
+    "category": "Cardio & Conditioning",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "29",
+    "text": "I am willing to make sacrifices and say no to things that will slow down my progress.",
+    "category": "Purpose & Mindset",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "30",
+    "text": "How well do you recover your breath after short intense efforts?",
+    "category": "Cardio & Conditioning",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "31",
+    "text": "How confident do you feel in your heart health and endurance?",
+    "category": "Cardio & Conditioning",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "32",
+    "text": "I feel strong and stable when performing my daily tasks.",
+    "category": "Strength and Physique",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "33",
+    "text": "I am happy with the way my body looks and feels.",
+    "category": "Strength and Physique",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "34",
+    "text": "How free and comfortable do your joints feel during daily life?",
+    "category": "Movement (mobility and stability)",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "35",
+    "text": "I know how to select exercises for my specific goals and needs.",
+    "category": "Strength and Physique",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "36",
+    "text": "Do you have a consistent eating time for every meal?",
+    "category": "Nutrition",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "37",
+    "text": "I go to bed and wake up at a consistent and predictable time.",
+    "category": "Recovery and Sleep",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "38",
+    "text": "My friends and family support me on my fitness journey.",
+    "category": "Support Systems",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "39",
+    "text": "I drink enough water every single day",
+    "category": "Nutrition",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "40",
+    "text": "I still eat well and workout when I have low energy because it’s my routine.",
+    "category": "Energy & Focus",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "41",
+    "text": "I have downtime activities that I enjoy.",
+    "category": "Recovery and Sleep",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "42",
+    "text": "How structured is your lifestyle to make healthy choices easy?",
+    "category": "Support Systems",
+    "lowLabel": "Not at all",
+    "highLabel": "Very",
+    "flipValue": false
+  },
+  {
+    "id": "43",
+    "text": "I have an internal  Ehy Ethat pushes me to my goals.",
+    "category": "Purpose & Mindset",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "44",
+    "text": "I can easily manage social events without compromising on my nutrition and recovery.",
+    "category": "Support Systems",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "45",
+    "text": "I have ways to keep myself accountable.",
+    "category": "Support Systems",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "46",
+    "text": "I know what my body needs and eat in accordance with it.",
+    "category": "Nutrition",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "47",
+    "text": "How consistent are you with your health habits on a weekly basis?",
+    "category": "Consistency & Habits",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "48",
+    "text": "How restful and energising is your sleep most nights?",
+    "category": "Recovery and Sleep",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "49",
+    "text": "How strong do you feel in basic movements (push, pull, squat, hinge)?",
+    "category": "Strength and Physique",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "50",
+    "text": "I am aware of my body’s signals when it is overworked.",
+    "category": "Stress Management",
+    "lowLabel": "Disagree",
+    "highLabel": "Agree",
+    "flipValue": false
+  },
+  {
+    "id": "51",
+    "text": "How well do you track your health habits?",
+    "category": "Consistency & Habits",
+    "lowLabel": "Not very well",
+    "highLabel": "Very well",
+    "flipValue": false
+  }
+]
