@@ -18,7 +18,7 @@ function StartScreen({ onStart }) {
                 <h1 className="start-title">Wheel of Health</h1>
                 <p className="start-subtitle">
                     Welcome to the DIIREN Fitness Legion. We're happy to have you onboard. First, let's get you measured up. Take this quiz to receive a personalised report about where your mind and body are at. Use the results of this quiz to identify target areas to work on next.
-                <br>When taking the quiz, don't think too hard. Follow your gut, and answer truthfully.
+                When taking the quiz, don't think too hard. Follow your gut, and answer truthfully.
                 </p>
                 <button className="next-button" onClick={onStart}>
                     Manifest your strength...
