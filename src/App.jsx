@@ -17,11 +17,12 @@ function StartScreen({ onStart }) {
             <div className="quiz-box">
                 <h1 className="start-title">Wheel of Health</h1>
                 <p className="start-subtitle">
-                    Discover your health strengths and areas for growth across 10 key dimensions. 
-                    This assessment takes about 5 minutes to complete.
+                    Welcome to the DIIREN Fitness Legion. We're happy to have you onboard. First, let's get you measured up. Take this quiz to receive a personalised report about where your mind and body are at. Use the results of this quiz to identify target areas to work on next.
+
+When taking the quiz, don't think too hard. Follow your gut, and answer truthfully.
                 </p>
                 <button className="next-button" onClick={onStart}>
-                    Start Assessment
+                    Manifest your strength...
                 </button>
             </div>
         </div>
