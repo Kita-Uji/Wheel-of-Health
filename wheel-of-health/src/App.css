@@ -1,0 +1,371 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    padding: 40px 0;
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.quiz-box {
+    background: white;
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    width: 100%;
+}
+
+.progress-container {
+    margin-bottom: 32px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #a8d5ba;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.progress-percentage {
+    font-size: 0.75rem;
+    color: #666;
+    text-align: center;
+    font-weight: 500;
+}
+
+.question-container {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 48px;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+    width: 100%;
+}
+
+.buttons-wrapper {
+    margin-bottom: 16px;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.option-button {
+    aspect-ratio: 1;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0;
+    min-width: 0;
+}
+
+.option-button:hover {
+    border-color: #3b4252;
+    background: #f8f9fa;
+}
+
+.option-button.selected {
+    background: #3b4252;
+    color: white;
+    border-color: #3b4252;
+}
+
+.labels-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 48px;
+    padding: 0 4px;
+}
+
+.next-button {
+    background: #3b4252;
+    color: white;
+    border: none;
+    padding: 16px 48px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.next-button:hover:not(:disabled) {
+    background: #2e3440;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 66, 82, 0.2);
+}
+
+.next-button:disabled {
+    background: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.start-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+}
+
+.start-subtitle {
+    font-size: 1.125rem;
+    color: #666;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.results-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.chart-wrapper {
+    margin-bottom: 40px;
+}
+
+.scores-accordion {
+    margin-top: 40px;
+}
+
+.accordion-subtitle {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.accordion-item {
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.accordion-header:hover {
+    background: #ebebeb;
+}
+
+.accordion-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.score-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.score-dot.score-low {
+    background: #dc2626;
+}
+
+.score-dot.score-medium {
+    background: #d97706;
+}
+
+.score-dot.score-high {
+    background: #16a34a;
+}
+
+.accordion-title {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 1rem;
+}
+
+.accordion-score {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 1rem;
+}
+
+.accordion-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.accordion-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.accordion-label.score-low {
+    color: #dc2626;
+}
+
+.accordion-label.score-medium {
+    color: #d97706;
+}
+
+.accordion-label.score-high {
+    color: #16a34a;
+}
+
+.accordion-arrow {
+    font-size: 0.75rem;
+    color: #666;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.accordion-arrow.open {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    color: #666;
+    line-height: 1.6;
+}
+
+.accordion-content p {
+    margin-bottom: 12px;
+}
+
+.accordion-content p:last-child {
+    margin-bottom: 0;
+}
+
+.accordion-content strong {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.accordion-content em {
+    font-style: italic;
+}
+
+.next-steps-container {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.next-steps-button {
+    background: #2563eb;
+    color: white;
+    padding: 16px 48px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.next-steps-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+@media (max-width: 768px) {
+    .accordion-header {
+        padding: 14px 16px;
+    }
+    
+    .accordion-title {
+        font-size: 0.9rem;
+    }
+    
+    .accordion-score {
+        font-size: 0.9rem;
+    }
+    
+    .accordion-header-left {
+        gap: 8px;
+    }
+    
+    .accordion-header-right {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .quiz-box {
+        padding: 32px 24px;
+    }
+    
+    .question-text {
+        font-size: 1.25rem;
+    }
+    
+    .buttons-grid {
+        gap: 6px;
+    }
+    
+    .option-button {
+        font-size: 0.875rem;
+    }
+    
+    .start-title {
+        font-size: 2rem;
+    }
+}
