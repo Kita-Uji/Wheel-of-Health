@@ -17,11 +17,11 @@ function StartScreen({ onStart }) {
             <div className="quiz-box">
                 <h1 className="start-title">Wheel of Health</h1>
                 <p className="start-subtitle">
-                    Welcome to the DIIREN Fitness Legion. We're happy to have you onboard. First, let's get you measured up. Take this quiz to receive a personalised report about where your mind and body are at. Use the results of this quiz to identify target areas to work on next.
-                When taking the quiz, don't think too hard. Follow your gut, and answer truthfully.
+                    Discover your health strengths and areas for growth across 10 key dimensions. 
+                    This assessment takes about 5 minutes to complete.
                 </p>
                 <button className="next-button" onClick={onStart}>
-                    Manifest your strength...
+                    Start Assessment
                 </button>
             </div>
         </div>
@@ -34,7 +34,7 @@ function QuizScreen({ questions, onComplete }) {
     const [selectedValue, setSelectedValue] = useState(null);
 
     const currentQuestion = questions[currentIndex];
-    const progress = `Question ${currentIndex + 1} of ${questions.length}`;
+    const progressPercentage = Math.round((currentIndex / questions.length) * 100);
 
     const handleSelectValue = (value) => {
         setSelectedValue(value);
@@ -81,7 +81,15 @@ function QuizScreen({ questions, onComplete }) {
     return (
         <div className="quiz-container">
             <div className="quiz-box">
-                <div className="progress-text">{progress}</div>
+                <div className="progress-container">
+                    <div className="progress-bar-bg">
+                        <div 
+                            className="progress-bar-fill" 
+                            style={{ width: `${progressPercentage}%` }}
+                        ></div>
+                    </div>
+                    <div className="progress-percentage">{progressPercentage}% complete</div>
+                </div>
                 
                 <div className="question-container">
                     <div className="question-text">{currentQuestion.text}</div>
@@ -118,7 +126,9 @@ function QuizScreen({ questions, onComplete }) {
     );
 }
 
-function ResultsScreen({ answers }) {
+function ResultsScreen({ answers, descriptions }) {
+    const [openDropdowns, setOpenDropdowns] = useState({});
+    
     const categoryScores = {};
     
     Object.values(answers).forEach(answer => {
@@ -135,7 +145,8 @@ function ResultsScreen({ answers }) {
         fullMark: 10
     }));
 
-    const scoresList = [...radarData].sort((a, b) => a.subject.localeCompare(b.subject));
+    // Sort by score (highest to lowest)
+    const scoresList = [...radarData].sort((a, b) => b.score - a.score);
     
     // Debug: Log the radar data
     console.log('Radar Data:', radarData);
@@ -145,6 +156,19 @@ function ResultsScreen({ answers }) {
         if (score < 3) return 'score-low';
         if (score >= 3 && score < 7) return 'score-medium';
         return 'score-high';
+    };
+    
+    const getScoreLabel = (score) => {
+        if (score < 3) return 'Constraint';
+        if (score >= 3 && score < 7) return 'Moderate';
+        return 'Strong';
+    };
+    
+    const toggleDropdown = (category) => {
+        setOpenDropdowns(prev => ({
+            ...prev,
+            [category]: !prev[category]
+        }));
     };
 
     return (
@@ -183,13 +207,47 @@ function ResultsScreen({ answers }) {
                     </ResponsiveContainer>
                 </div>
 
-                <div className="scores-grid">
+                <div className="scores-accordion">
+                    <div className="accordion-subtitle">Ranked from strongest to weakest.</div>
                     {scoresList.map(({ subject, score }) => (
-                        <div key={subject} className="score-card">
-                            <div className={`score-category ${getScoreClass(score)}`}>{subject}</div>
-                            <div className={`score-value ${getScoreClass(score)}`}>{score}/10</div>
+                        <div key={subject} className="accordion-item">
+                            <div 
+                                className="accordion-header"
+                                onClick={() => toggleDropdown(subject)}
+                            >
+                                <div className="accordion-header-left">
+                                    <span className={`score-dot ${getScoreClass(score)}`}></span>
+                                    <span className="accordion-title">{subject}</span>
+                                    <span className="accordion-score">{score} / 10</span>
+                                </div>
+                                <div className="accordion-header-right">
+                                    <span className={`accordion-label ${getScoreClass(score)}`}>
+                                        {getScoreLabel(score)}
+                                    </span>
+                                    <span className={`accordion-arrow ${openDropdowns[subject] ? 'open' : ''}`}>
+                                        ▼
+                                    </span>
+                                </div>
+                            </div>
+                            {openDropdowns[subject] && (
+                                <div 
+                                    className="accordion-content"
+                                    dangerouslySetInnerHTML={{ __html: descriptions[subject] || '<p>Description coming soon.</p>' }}
+                                />
+                            )}
                         </div>
                     ))}
+                </div>
+
+                <div className="next-steps-container">
+                    <a 
+                        href="https://diirenfitness.com/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="next-steps-button"
+                    >
+                        Get Your Next Steps
+                    </a>
                 </div>
             </div>
         </div>
@@ -199,34 +257,50 @@ function ResultsScreen({ answers }) {
 export default function App() {
     const [screen, setScreen] = useState('loading');
     const [questions, setQuestions] = useState([]);
+    const [descriptions, setDescriptions] = useState({});
     const [answers, setAnswers] = useState({});
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Load questions from JSON file in public folder
+        // Load questions
         fetch('/questions.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load questions.json');
-                }
-                return response.json();
-            })
-            .then(questions => {
-                if (questions.length === 0) {
+            .then(res => res.json())
+            .then(async (questionsData) => {
+                if (questionsData.length === 0) {
                     throw new Error('No valid questions found in JSON');
                 }
                 
-                console.log('✅ Loaded questions:', questions.length);
-                console.log('📋 Sample question:', questions[0]);
-                console.log('🏷️ All categories:', [...new Set(questions.map(q => q.category))]);
-                console.log('🔢 Number of unique categories:', new Set(questions.map(q => q.category)).size);
+                console.log('✅ Loaded questions:', questionsData.length);
+                console.log('📋 Sample question:', questionsData[0]);
                 
-                const shuffled = shuffleArray(questions);
+                // Get unique categories
+                const categories = [...new Set(questionsData.map(q => q.category))];
+                console.log('🏷️ All categories:', categories);
+                console.log('🔢 Number of unique categories:', categories.length);
+                
+                // Load HTML description files for each category
+                const descriptionsData = {};
+                for (const category of categories) {
+                    try {
+                        const response = await fetch(`/descriptions/${category}.html`);
+                        if (response.ok) {
+                            // Load HTML exactly as written - no modification
+                            descriptionsData[category] = await response.text();
+                        }
+                    } catch (err) {
+                        console.warn(`Could not load description for ${category}`);
+                    }
+                }
+                
+                console.log('📝 Loaded descriptions for', Object.keys(descriptionsData).length, 'categories');
+                
+                const shuffled = shuffleArray(questionsData);
                 setQuestions(shuffled);
+                setDescriptions(descriptionsData);
                 setScreen('start');
             })
             .catch(err => {
-                console.error('Error loading questions:', err);
+                console.error('Error loading data:', err);
                 setError(err.message);
                 setScreen('error');
             });
@@ -277,7 +351,7 @@ export default function App() {
         <div className="app-container">
             {screen === 'start' && <StartScreen onStart={handleStart} />}
             {screen === 'quiz' && <QuizScreen questions={questions} onComplete={handleComplete} />}
-            {screen === 'results' && <ResultsScreen answers={answers} />}
+            {screen === 'results' && <ResultsScreen answers={answers} descriptions={descriptions} />}
         </div>
     );
 }
