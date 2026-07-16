@@ -355,6 +355,11 @@ export default function App() {
                 form.appendChild(hidden);
             }
 
+            const closeButton = document.querySelector('.formkit-close');
+            if (closeButton && closeButton.style.display !== 'none') {
+                closeButton.style.display = 'none';
+            }
+
             const formStillPresent = document.querySelector('form[action*="/forms/9685552/subscriptions"]');
             const successIndicator = document.querySelector('[class*="success" i], [data-state="success"]');
 
