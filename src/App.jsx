@@ -399,7 +399,7 @@ export default function App() {
                 <div className="quiz-container">
                     <div className="quiz-box">
                         <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
-                            <div>Loading your results...</div>
+                            <div>Waiting on form submission...</div>
                             <div style={{ fontSize: '0.875rem', marginTop: '8px' }}>
                                 (Will automatically skip to the next screen after 15 seconds)
                             </div>
