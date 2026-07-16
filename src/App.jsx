@@ -11,6 +11,26 @@ function shuffleArray(array) {
     return shuffled;
 }
 
+function computeCategoryScores(answers) {
+    const totals = {};
+    Object.values(answers).forEach(({ category, value }) => {
+        if (!totals[category]) {
+            totals[category] = { total: 0, count: 0 };
+        }
+        totals[category].total += value;
+        totals[category].count += 1;
+    });
+    return Object.entries(totals).map(([category, data]) => ({
+        subject: category,
+        score: parseFloat((data.total / data.count).toFixed(1)),
+        fullMark: 10
+    }));
+}
+
+function formatScoresSummary(radarData) {
+    return radarData.map(({ subject, score }) => `${subject}: ${score}/10`).join(', ');
+}
+
 function StartScreen({ onStart }) {
     return (
         <div className="quiz-container">
@@ -128,22 +148,8 @@ function QuizScreen({ questions, onComplete }) {
 
 function ResultsScreen({ answers, descriptions }) {
     const [openDropdowns, setOpenDropdowns] = useState({});
-    
-    const categoryScores = {};
-    
-    Object.values(answers).forEach(answer => {
-        if (!categoryScores[answer.category]) {
-            categoryScores[answer.category] = { total: 0, count: 0 };
-        }
-        categoryScores[answer.category].total += answer.value;
-        categoryScores[answer.category].count += 1;
-    });
 
-    const radarData = Object.entries(categoryScores).map(([category, data]) => ({
-        subject: category,
-        score: parseFloat((data.total / data.count).toFixed(1)),
-        fullMark: 10
-    }));
+    const radarData = computeCategoryScores(answers);
 
     // Sort by score (highest to lowest)
     const scoresList = [...radarData].sort((a, b) => b.score - a.score);
@@ -312,7 +318,65 @@ export default function App() {
 
     const handleComplete = (finalAnswers) => {
         setAnswers(finalAnswers);
-        setScreen('results');
+
+        // Kit's own script suppresses re-showing a modal to a browser that has
+        // already subscribed via this form, via these localStorage flags it sets
+        // itself. Clear them so the popup (and the scores resubmission) happens
+        // on every quiz completion, not just a visitor's first ever attempt.
+        localStorage.removeItem('cksubscribed-0a8ace86ad');
+        localStorage.removeItem('ck/forms/modal/0a8ace86ad/hideUntil');
+
+        setScreen('awaiting-signup');
+
+        const radarData = computeCategoryScores(finalAnswers);
+        const summary = formatScoresSummary(radarData);
+
+        let fieldInjected = false;
+        let settled = false;
+
+        const reveal = () => {
+            if (settled) return;
+            settled = true;
+            observer.disconnect();
+            clearTimeout(fallbackTimer);
+            setScreen('results');
+        };
+
+        const observer = new MutationObserver(() => {
+            const form = document.querySelector('form[action*="/forms/9685552/subscriptions"]');
+
+            if (form && !fieldInjected) {
+                fieldInjected = true;
+                console.log('[Kit gate] form detected, injecting scores field');
+                const hidden = document.createElement('input');
+                hidden.type = 'hidden';
+                hidden.name = 'fields[scores]';
+                hidden.value = summary;
+                form.appendChild(hidden);
+            }
+
+            const formStillPresent = document.querySelector('form[action*="/forms/9685552/subscriptions"]');
+            const successIndicator = document.querySelector('[class*="success" i], [data-state="success"]');
+
+            if (fieldInjected && (!formStillPresent || successIndicator)) {
+                console.log('[Kit gate] success detected, revealing results');
+                reveal();
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+        // Fail open: never leave the visitor stuck if Kit's popup doesn't show or
+        // never signals success (suppression cooldown, ad blocker, script/network issues).
+        const fallbackTimer = setTimeout(() => {
+            console.log('[Kit gate] timed out waiting for signup, revealing results anyway');
+            reveal();
+        }, 15000);
+
+        const script = document.createElement('script');
+        script.src = 'https://aaron-92.kit.com/0a8ace86ad/index.js';
+        script.async = true;
+        script.dataset.uid = '0a8ace86ad';
+        document.body.appendChild(script);
     };
 
     if (screen === 'loading') {
@@ -322,6 +386,23 @@ export default function App() {
                     <div className="quiz-box">
                         <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
                             Loading questions...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (screen === 'awaiting-signup') {
+        return (
+            <div className="app-container">
+                <div className="quiz-container">
+                    <div className="quiz-box">
+                        <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+                            <div>Loading your results...</div>
+                            <div style={{ fontSize: '0.875rem', marginTop: '8px' }}>
+                                (Will automatically skip to the next screen after 15 seconds)
+                            </div>
                         </div>
                     </div>
                 </div>
