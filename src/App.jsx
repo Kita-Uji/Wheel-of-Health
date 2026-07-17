@@ -323,8 +323,8 @@ export default function App() {
         // already subscribed via this form, via these localStorage flags it sets
         // itself. Clear them so the popup (and the scores resubmission) happens
         // on every quiz completion, not just a visitor's first ever attempt.
-        localStorage.removeItem('cksubscribed-0a8ace86ad');
-        localStorage.removeItem('ck/forms/modal/0a8ace86ad/hideUntil');
+        localStorage.removeItem('cksubscribed-30de73a888');
+        localStorage.removeItem('ck/forms/modal/30de73a888/hideUntil');
 
         setScreen('awaiting-signup');
 
@@ -338,12 +338,11 @@ export default function App() {
             if (settled) return;
             settled = true;
             observer.disconnect();
-            clearTimeout(fallbackTimer);
             setScreen('results');
         };
 
         const observer = new MutationObserver(() => {
-            const form = document.querySelector('form[action*="/forms/9685552/subscriptions"]');
+            const form = document.querySelector('form[action*="app.kit.com/forms/"][action*="/subscriptions"]');
 
             if (form && !fieldInjected) {
                 fieldInjected = true;
@@ -360,7 +359,7 @@ export default function App() {
                 closeButton.style.display = 'none';
             }
 
-            const formStillPresent = document.querySelector('form[action*="/forms/9685552/subscriptions"]');
+            const formStillPresent = document.querySelector('form[action*="app.kit.com/forms/"][action*="/subscriptions"]');
             const successIndicator = document.querySelector('[class*="success" i], [data-state="success"]');
 
             if (fieldInjected && (!formStillPresent || successIndicator)) {
@@ -370,17 +369,10 @@ export default function App() {
         });
         observer.observe(document.body, { childList: true, subtree: true, attributes: true });
 
-        // Fail open: never leave the visitor stuck if Kit's popup doesn't show or
-        // never signals success (suppression cooldown, ad blocker, script/network issues).
-        const fallbackTimer = setTimeout(() => {
-            console.log('[Kit gate] timed out waiting for signup, revealing results anyway');
-            reveal();
-        }, 15000);
-
         const script = document.createElement('script');
-        script.src = 'https://aaron-92.kit.com/0a8ace86ad/index.js';
+        script.src = 'https://diiren-fitness.kit.com/30de73a888/index.js';
         script.async = true;
-        script.dataset.uid = '0a8ace86ad';
+        script.dataset.uid = '30de73a888';
         document.body.appendChild(script);
     };
 
@@ -404,10 +396,7 @@ export default function App() {
                 <div className="quiz-container">
                     <div className="quiz-box">
                         <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
-                            <div>Waiting on form submission...</div>
-                            <div style={{ fontSize: '0.875rem', marginTop: '8px' }}>
-                                (Will automatically skip to the next screen after 15 seconds)
-                            </div>
+                            Waiting on form submission...
                         </div>
                     </div>
                 </div>
