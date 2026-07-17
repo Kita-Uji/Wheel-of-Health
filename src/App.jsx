@@ -359,6 +359,15 @@ export default function App() {
                 closeButton.style.display = 'none';
             }
 
+            const overlay = document.querySelector('.formkit-overlay');
+            if (overlay && overlay.style.pointerEvents !== 'none') {
+                overlay.style.pointerEvents = 'none';
+            }
+            const modal = document.querySelector('.formkit-modal');
+            if (modal && modal.style.pointerEvents !== 'auto') {
+                modal.style.pointerEvents = 'auto';
+            }
+
             const formStillPresent = document.querySelector('form[action*="app.kit.com/forms/"][action*="/subscriptions"]');
             const successIndicator = document.querySelector('[class*="success" i], [data-state="success"]');
 

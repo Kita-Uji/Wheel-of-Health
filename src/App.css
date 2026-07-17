@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: #fafafa;
+    background: #f7f4ef;
     padding: 40px 0;
 }
 
@@ -48,7 +48,7 @@ body {
 
 .progress-bar-fill {
     height: 100%;
-    background: #a8d5ba;
+    background: #e7c729;
     transition: width 0.3s ease;
     border-radius: 4px;
 }
@@ -104,14 +104,14 @@ body {
 }
 
 .option-button:hover {
-    border-color: #3b4252;
+    border-color: #99282e;
     background: #f8f9fa;
 }
 
 .option-button.selected {
-    background: #3b4252;
+    background: #99282e;
     color: white;
-    border-color: #3b4252;
+    border-color: #99282e;
 }
 
 .labels-row {
@@ -124,7 +124,7 @@ body {
 }
 
 .next-button {
-    background: #3b4252;
+    background: #99282e;
     color: white;
     border: none;
     padding: 16px 48px;
@@ -136,9 +136,9 @@ body {
 }
 
 .next-button:hover:not(:disabled) {
-    background: #2e3440;
+    background: #822227;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59, 66, 82, 0.2);
+    box-shadow: 0 4px 12px rgba(153, 40, 46, 0.2);
 }
 
 .next-button:disabled {
@@ -309,7 +309,7 @@ body {
 }
 
 .next-steps-button {
-    background: #2563eb;
+    background: #99282e;
     color: white;
     padding: 16px 48px;
     font-size: 1rem;
@@ -321,9 +321,9 @@ body {
 }
 
 .next-steps-button:hover {
-    background: #1d4ed8;
+    background: #822227;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 12px rgba(153, 40, 46, 0.3);
 }
 
 @media (max-width: 768px) {
